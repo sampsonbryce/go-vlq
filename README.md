@@ -8,7 +8,7 @@ References:
 
 ## Why?
 
-I wanted to parse JS sourcemaps in golang and understand how they really worked. I could find a good vlq encoder/decoder in golang that I could understand so I wrote my own.
+I wanted to parse JS sourcemaps in golang and understand how they really worked. I could not find a good vlq encoder/decoder in golang that I could understand so I wrote my own.
 
 ## Usage
 
