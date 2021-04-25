@@ -57,3 +57,49 @@ func Decode(mapping string) []int {
 
 	return values
 }
+
+// Encode takes an int array and converts
+// it into base64 VLQ string
+// Heavily insipired by https://github.com/mozilla/source-map
+// and https://github.com/Rich-Harris/vl
+func Encode(values []int) string {
+	result := ""
+	for _, value := range values {
+		result += encodeInteger(value)
+	}
+
+	return result
+}
+
+func encodeInteger(value int) string {
+
+	BASE64 := "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
+
+	result := ""
+
+	// Shift and set sign bit
+	if value < 0 {
+		value = (-value << 1) | 1
+	} else {
+		value = value << 1
+	}
+
+	for {
+		// Save the first 5 bits
+		field := value & 31
+		value = value >> 5
+
+		// Check if we are still encoding
+		if value > 0 {
+			field = field | 32 // Set continuation bit
+		}
+
+		result += string(BASE64[field])
+
+		if value == 0 {
+			break
+		}
+	}
+
+	return result
+}

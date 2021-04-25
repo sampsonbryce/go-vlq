@@ -38,3 +38,26 @@ func TestDecode(t *testing.T) {
 		})
 	}
 }
+
+func TestEncode(t *testing.T) {
+	toTest := make(map[string][]int)
+
+	toTest["AAAA"] = []int{0, 0, 0, 0}
+	toTest["EAAgB"] = []int{2, 0, 0, 16}
+	toTest["mBAAD"] = []int{19, 0, 0, -1}
+	toTest["SAAa"] = []int{9, 0, 0, 13}
+	toTest["oE"] = []int{68}
+	toTest["4mBAEA"] = []int{620, 0, 2, 0}
+	toTest["D"] = []int{-1}
+
+	for expected, input := range toTest {
+
+		t.Run(expected, func(t *testing.T) {
+			result := Encode(input)
+
+			if expected != result {
+				t.Errorf("Input %v expected result %v but got %v", input, expected, result)
+			}
+		})
+	}
+}
