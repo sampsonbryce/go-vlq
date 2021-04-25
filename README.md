@@ -1,5 +1,7 @@
 # Base64 VLQ Encode/Decode in Golang
 
+![Test](https://github.com/sampsonbryce/go-vlq/actions/workflows/ci.yml/badge.svg)
+
 References: 
 - https://github.com/mozilla/source-map
 - https://github.com/Rich-Harris/vl
