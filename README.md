@@ -4,7 +4,7 @@
 
 References: 
 - https://github.com/mozilla/source-map
-- https://github.com/Rich-Harris/vl
+- https://github.com/Rich-Harris/vlq
 
 ## Why?
 
